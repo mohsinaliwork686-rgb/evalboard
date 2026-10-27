@@ -27,7 +27,8 @@ export const SAMPLES: Sample[] = [
     title: "Retrieval: doubling the chunk size",
     about:
       "Real runs from ragsweep's example: BM25 over a 17-document handbook, chunks of 512 against 1024 " +
-      "characters. The mean score rises from 0.83 to 0.89, and two questions stop finding their passage.",
+      "characters. The mean score rises from 0.83 to 0.89, and two questions, both worded differently " +
+      "from the handbook, fall out of the top two results.",
     path: "samples/ragsweep-chunk-size.json",
     raw: ragsweepChunkSize,
     baselineRun: "bm25-fixed-512-64",
