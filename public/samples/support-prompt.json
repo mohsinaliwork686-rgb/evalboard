@@ -1,0 +1,647 @@
+{
+  "schema": 1,
+  "tool": "illustrative-example",
+  "note": "Made-up numbers, not a real eval: a support assistant's prompt rewritten. Scores are a judge's 0 to 1 rating of each answer.",
+  "runs": [
+    {
+      "id": "support-prompt-v1",
+      "cases": [
+        {
+          "id": "refund-damaged-item",
+          "tags": [
+            "refunds"
+          ],
+          "score": 0.9
+        },
+        {
+          "id": "refund-after-30-days",
+          "tags": [
+            "refunds"
+          ],
+          "score": 0.9
+        },
+        {
+          "id": "refund-partial-order",
+          "tags": [
+            "refunds"
+          ],
+          "score": 0.9
+        },
+        {
+          "id": "refund-gift-card",
+          "tags": [
+            "refunds"
+          ],
+          "score": 0.9
+        },
+        {
+          "id": "refund-subscription",
+          "tags": [
+            "refunds"
+          ],
+          "score": 0.9
+        },
+        {
+          "id": "shipping-delay",
+          "tags": [
+            "shipping"
+          ],
+          "score": 0.87
+        },
+        {
+          "id": "shipping-wrong-address",
+          "tags": [
+            "shipping"
+          ],
+          "score": 0.73
+        },
+        {
+          "id": "shipping-international",
+          "tags": [
+            "shipping"
+          ],
+          "score": 0.89
+        },
+        {
+          "id": "shipping-tracking-missing",
+          "tags": [
+            "shipping"
+          ],
+          "score": 0.42
+        },
+        {
+          "id": "shipping-lost-parcel",
+          "tags": [
+            "shipping"
+          ],
+          "score": 0.68
+        },
+        {
+          "id": "shipping-express-cost",
+          "tags": [
+            "shipping"
+          ],
+          "score": 0.85
+        },
+        {
+          "id": "shipping-po-box",
+          "tags": [
+            "shipping"
+          ],
+          "score": 0.53
+        },
+        {
+          "id": "shipping-split-order",
+          "tags": [
+            "shipping"
+          ],
+          "score": 0.39
+        },
+        {
+          "id": "shipping-customs-fee",
+          "tags": [
+            "shipping"
+          ],
+          "score": 0.37
+        },
+        {
+          "id": "shipping-change-date",
+          "tags": [
+            "shipping"
+          ],
+          "score": 0.46
+        },
+        {
+          "id": "billing-double-charge",
+          "tags": [
+            "billing"
+          ],
+          "score": 0.79
+        },
+        {
+          "id": "billing-card-declined",
+          "tags": [
+            "billing"
+          ],
+          "score": 0.74
+        },
+        {
+          "id": "billing-invoice-copy",
+          "tags": [
+            "billing"
+          ],
+          "score": 0.67
+        },
+        {
+          "id": "billing-vat-number",
+          "tags": [
+            "billing"
+          ],
+          "score": 0.91
+        },
+        {
+          "id": "billing-currency",
+          "tags": [
+            "billing"
+          ],
+          "score": 0.85
+        },
+        {
+          "id": "billing-upgrade-proration",
+          "tags": [
+            "billing"
+          ],
+          "score": 0.83
+        },
+        {
+          "id": "billing-downgrade",
+          "tags": [
+            "billing"
+          ],
+          "score": 0.59
+        },
+        {
+          "id": "billing-failed-renewal",
+          "tags": [
+            "billing"
+          ],
+          "score": 0.56
+        },
+        {
+          "id": "billing-receipt-email",
+          "tags": [
+            "billing"
+          ],
+          "score": 0.85
+        },
+        {
+          "id": "billing-payment-methods",
+          "tags": [
+            "billing"
+          ],
+          "score": 0.37
+        },
+        {
+          "id": "account-password-reset",
+          "tags": [
+            "accounts"
+          ],
+          "score": 0.53
+        },
+        {
+          "id": "account-email-change",
+          "tags": [
+            "accounts"
+          ],
+          "score": 0.67
+        },
+        {
+          "id": "account-delete",
+          "tags": [
+            "accounts"
+          ],
+          "score": 0.87
+        },
+        {
+          "id": "account-2fa-lost-phone",
+          "tags": [
+            "accounts"
+          ],
+          "score": 0.48
+        },
+        {
+          "id": "account-locked",
+          "tags": [
+            "accounts"
+          ],
+          "score": 0.82
+        },
+        {
+          "id": "account-merge",
+          "tags": [
+            "accounts"
+          ],
+          "score": 0.9
+        },
+        {
+          "id": "account-export-data",
+          "tags": [
+            "accounts"
+          ],
+          "score": 0.62
+        },
+        {
+          "id": "account-shared-login",
+          "tags": [
+            "accounts"
+          ],
+          "score": 0.9
+        },
+        {
+          "id": "account-name-change",
+          "tags": [
+            "accounts"
+          ],
+          "score": 0.7
+        },
+        {
+          "id": "account-login-loop",
+          "tags": [
+            "accounts"
+          ],
+          "score": 0.7
+        },
+        {
+          "id": "product-size-guide",
+          "tags": [
+            "product"
+          ],
+          "score": 0.79
+        },
+        {
+          "id": "product-compatibility",
+          "tags": [
+            "product"
+          ],
+          "score": 0.42
+        },
+        {
+          "id": "product-warranty",
+          "tags": [
+            "product"
+          ],
+          "score": 0.48
+        },
+        {
+          "id": "product-restock",
+          "tags": [
+            "product"
+          ],
+          "score": 0.72
+        },
+        {
+          "id": "product-materials",
+          "tags": [
+            "product"
+          ],
+          "score": 0.71
+        },
+        {
+          "id": "product-care",
+          "tags": [
+            "product"
+          ],
+          "score": 0.8
+        },
+        {
+          "id": "product-bundle",
+          "tags": [
+            "product"
+          ],
+          "score": 0.87
+        },
+        {
+          "id": "product-comparison",
+          "tags": [
+            "product"
+          ],
+          "score": 0.82
+        },
+        {
+          "id": "product-assembly",
+          "tags": [
+            "product"
+          ],
+          "score": 0.52
+        },
+        {
+          "id": "product-allergens",
+          "tags": [
+            "product"
+          ],
+          "score": 0.78
+        }
+      ]
+    },
+    {
+      "id": "support-prompt-v2",
+      "cases": [
+        {
+          "id": "refund-damaged-item",
+          "tags": [
+            "refunds"
+          ],
+          "score": 0.1
+        },
+        {
+          "id": "refund-after-30-days",
+          "tags": [
+            "refunds"
+          ],
+          "score": 0.1
+        },
+        {
+          "id": "refund-partial-order",
+          "tags": [
+            "refunds"
+          ],
+          "score": 0.1
+        },
+        {
+          "id": "refund-gift-card",
+          "tags": [
+            "refunds"
+          ],
+          "score": 0.1
+        },
+        {
+          "id": "refund-subscription",
+          "tags": [
+            "refunds"
+          ],
+          "score": 0.1
+        },
+        {
+          "id": "shipping-delay",
+          "tags": [
+            "shipping"
+          ],
+          "score": 0.96
+        },
+        {
+          "id": "shipping-wrong-address",
+          "tags": [
+            "shipping"
+          ],
+          "score": 0.92
+        },
+        {
+          "id": "shipping-international",
+          "tags": [
+            "shipping"
+          ],
+          "score": 0.98
+        },
+        {
+          "id": "shipping-tracking-missing",
+          "tags": [
+            "shipping"
+          ],
+          "score": 0.5
+        },
+        {
+          "id": "shipping-lost-parcel",
+          "tags": [
+            "shipping"
+          ],
+          "score": 0.85
+        },
+        {
+          "id": "shipping-express-cost",
+          "tags": [
+            "shipping"
+          ],
+          "score": 0.98
+        },
+        {
+          "id": "shipping-po-box",
+          "tags": [
+            "shipping"
+          ],
+          "score": 0.67
+        },
+        {
+          "id": "shipping-split-order",
+          "tags": [
+            "shipping"
+          ],
+          "score": 0.59
+        },
+        {
+          "id": "shipping-customs-fee",
+          "tags": [
+            "shipping"
+          ],
+          "score": 0.46
+        },
+        {
+          "id": "shipping-change-date",
+          "tags": [
+            "shipping"
+          ],
+          "score": 0.58
+        },
+        {
+          "id": "billing-double-charge",
+          "tags": [
+            "billing"
+          ],
+          "score": 0.94
+        },
+        {
+          "id": "billing-card-declined",
+          "tags": [
+            "billing"
+          ],
+          "score": 0.83
+        },
+        {
+          "id": "billing-invoice-copy",
+          "tags": [
+            "billing"
+          ],
+          "score": 0.74
+        },
+        {
+          "id": "billing-vat-number",
+          "tags": [
+            "billing"
+          ],
+          "score": 0.98
+        },
+        {
+          "id": "billing-currency",
+          "tags": [
+            "billing"
+          ],
+          "score": 0.97
+        },
+        {
+          "id": "billing-upgrade-proration",
+          "tags": [
+            "billing"
+          ],
+          "score": 0.98
+        },
+        {
+          "id": "billing-downgrade",
+          "tags": [
+            "billing"
+          ],
+          "score": 0.8
+        },
+        {
+          "id": "billing-failed-renewal",
+          "tags": [
+            "billing"
+          ],
+          "score": 0.68
+        },
+        {
+          "id": "billing-receipt-email",
+          "tags": [
+            "billing"
+          ],
+          "score": 0.98
+        },
+        {
+          "id": "billing-payment-methods",
+          "tags": [
+            "billing"
+          ],
+          "score": 0.61
+        },
+        {
+          "id": "account-password-reset",
+          "tags": [
+            "accounts"
+          ],
+          "score": 0.75
+        },
+        {
+          "id": "account-email-change",
+          "tags": [
+            "accounts"
+          ],
+          "score": 0.73
+        },
+        {
+          "id": "account-delete",
+          "tags": [
+            "accounts"
+          ],
+          "score": 0.98
+        },
+        {
+          "id": "account-2fa-lost-phone",
+          "tags": [
+            "accounts"
+          ],
+          "score": 0.61
+        },
+        {
+          "id": "account-locked",
+          "tags": [
+            "accounts"
+          ],
+          "score": 0.98
+        },
+        {
+          "id": "account-merge",
+          "tags": [
+            "accounts"
+          ],
+          "score": 0.98
+        },
+        {
+          "id": "account-export-data",
+          "tags": [
+            "accounts"
+          ],
+          "score": 0.79
+        },
+        {
+          "id": "account-shared-login",
+          "tags": [
+            "accounts"
+          ],
+          "score": 0.98
+        },
+        {
+          "id": "account-name-change",
+          "tags": [
+            "accounts"
+          ],
+          "score": 0.79
+        },
+        {
+          "id": "account-login-loop",
+          "tags": [
+            "accounts"
+          ],
+          "score": 0.78
+        },
+        {
+          "id": "product-size-guide",
+          "tags": [
+            "product"
+          ],
+          "score": 0.98
+        },
+        {
+          "id": "product-compatibility",
+          "tags": [
+            "product"
+          ],
+          "score": 0.64
+        },
+        {
+          "id": "product-warranty",
+          "tags": [
+            "product"
+          ],
+          "score": 0.6
+        },
+        {
+          "id": "product-restock",
+          "tags": [
+            "product"
+          ],
+          "score": 0.81
+        },
+        {
+          "id": "product-materials",
+          "tags": [
+            "product"
+          ],
+          "score": 0.85
+        },
+        {
+          "id": "product-care",
+          "tags": [
+            "product"
+          ],
+          "score": 0.95
+        },
+        {
+          "id": "product-bundle",
+          "tags": [
+            "product"
+          ],
+          "score": 0.98
+        },
+        {
+          "id": "product-comparison",
+          "tags": [
+            "product"
+          ],
+          "score": 0.98
+        },
+        {
+          "id": "product-assembly",
+          "tags": [
+            "product"
+          ],
+          "score": 0.73
+        },
+        {
+          "id": "product-allergens",
+          "tags": [
+            "product"
+          ],
+          "score": 0.91
+        }
+      ]
+    }
+  ]
+}
