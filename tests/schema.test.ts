@@ -147,6 +147,15 @@ describe("files that are refused", () => {
     expect(problemsOf(validateResults(file))).toEqual(['runs[0].cases[2].id: "a" is already used by runs[0].cases[0]'])
   })
 
+  it("names a duplicate case id even when that case has another problem", () => {
+    const file = minimal()
+    file.runs = [{ id: "r", cases: [{ id: "a", score: 1 }, { id: "a", score: "high" }] }]
+    expect(problemsOf(validateResults(file))).toEqual([
+      'runs[0].cases[1].score: expected a number, got a string ("high")',
+      'runs[0].cases[1].id: "a" is already used by runs[0].cases[0]',
+    ])
+  })
+
   it("names a duplicate run id", () => {
     const file = minimal()
     const run = { id: "same", cases: [{ id: "a", score: 1 }] }

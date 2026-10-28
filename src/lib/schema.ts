@@ -148,14 +148,15 @@ function checkRun(raw: unknown, path: string, report: Report): Run | null {
     raw.cases.forEach((rawCase, index) => {
       const casePath = `${path}.cases[${index}]`
       const checked = checkCase(rawCase, casePath, report)
-      if (!checked) return
-      const earlier = seen.get(checked.id)
-      if (earlier) {
-        report(`${casePath}.id`, `"${checked.id}" is already used by ${earlier}`)
-      } else {
-        seen.set(checked.id, casePath)
+      // A duplicate id is its own problem, so it is checked whenever the id is usable, even when
+      // something else about the case is not: fixing the score must not reveal a second error.
+      const caseId = isObject(rawCase) && typeof rawCase.id === "string" && rawCase.id.trim() !== "" ? rawCase.id : null
+      if (caseId !== null) {
+        const earlier = seen.get(caseId)
+        if (earlier) report(`${casePath}.id`, `"${caseId}" is already used by ${earlier}`)
+        else seen.set(caseId, casePath)
       }
-      cases.push(checked)
+      if (checked) cases.push(checked)
     })
   }
 
