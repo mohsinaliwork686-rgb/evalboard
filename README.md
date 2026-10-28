@@ -36,7 +36,7 @@ Any tool can write the same small format.
 |-----|------|-|
 | Mon | Plan and README | done |
 | Tue | The format and its validator, the diff, the summary | done |
-| Wed | The page: loading, the table, the tag filter | |
+| Wed | The page: loading, the table, the tag filter | done |
 | Thu | The chart, the export, browser tests, CI, deploy | |
 | Fri | Screenshots, publish | |
 
