@@ -1,4 +1,5 @@
 import type { CaseChange, Comparison, RunNumbers } from "./diff"
+import { formatPercent, formatScore, formatScoreChange, formatRateChange, plural } from "./format"
 
 /**
  * The Markdown summary, for pasting into a pull request.
@@ -15,6 +16,44 @@ export interface SummaryOptions {
 }
 
 export const DEFAULT_LIMIT = 50
+
+/**
+ * The one-sentence verdict, shared by the page and the summary: "5 cases regressed" followed by
+ * "while the mean score rose from 0.710 to 0.740". `alarming` says whether the lead deserves weight.
+ */
+export interface Headline {
+  lead: string
+  rest: string
+  alarming: boolean
+}
+
+export function headline(comparison: Comparison): Headline {
+  const regressions = comparison.counts.regressed
+  const { baseline, candidate } = comparison
+  const lead = regressions === 0 ? "No case regressed" : `${plural(regressions, "case")} regressed`
+  const alarming = regressions > 0
+
+  if (baseline.meanScore === null || candidate.meanScore === null) return { lead, rest: ".", alarming }
+  const before = formatScore(baseline.meanScore)
+  const after = formatScore(candidate.meanScore)
+  if (before === after) return { lead, rest: `, and the mean score stayed at ${before}.`, alarming }
+  const way = candidate.meanScore > baseline.meanScore ? "rose" : "fell"
+  // "while" for the case this tool exists for: the average says better, the cases say otherwise.
+  const joint = alarming && way === "rose" ? " while" : ", and"
+  return { lead, rest: `${joint} the mean score ${way} from ${before} to ${after}.`, alarming }
+}
+
+/** Why the means may not be like for like, when the two runs hold different cases. Null when they match. */
+export function caseSetNote(comparison: Comparison): string | null {
+  const { removed, added } = comparison.counts
+  if (removed === 0 && added === 0) return null
+  // The means are over each run's own cases. Say so when the sets differ, or a reader takes a
+  // change in which cases were run for a change in how well they did.
+  return (
+    `The two runs do not hold the same cases (${removed} only in the baseline, ${added} only in ` +
+    "the candidate), and each run's numbers include its own."
+  )
+}
 
 export function summarise(comparison: Comparison, options: SummaryOptions): string {
   const limit = options.limit ?? DEFAULT_LIMIT
@@ -33,12 +72,13 @@ export function summarise(comparison: Comparison, options: SummaryOptions): stri
     return finish(lines)
   }
 
-  lines.push(headline(regressed.length, baseline, candidate), "")
+  const verdict = headline(comparison)
+  lines.push(`${verdict.alarming ? `**${verdict.lead}**` : verdict.lead}${verdict.rest}`, "")
   lines.push(
     "| | Baseline | Candidate | Change |",
     "|---|---:|---:|---:|",
-    `| Mean score | ${score(baseline.meanScore)} | ${score(candidate.meanScore)} | ${change(baseline.meanScore, candidate.meanScore, 3, "")} |`,
-    `| Pass rate | ${rate(baseline)} | ${rate(candidate)} | ${change(percent(baseline.passRate), percent(candidate.passRate), 1, " pts")} |`,
+    `| Mean score | ${formatScore(baseline.meanScore)} | ${formatScore(candidate.meanScore)} | ${formatScoreChange(baseline.meanScore, candidate.meanScore)} |`,
+    `| Pass rate | ${rate(baseline)} | ${rate(candidate)} | ${formatRateChange(baseline.passRate, candidate.passRate)} |`,
     "",
   )
 
@@ -56,31 +96,12 @@ export function summarise(comparison: Comparison, options: SummaryOptions): stri
   lines.push(
     `A case passes when its score is at least ${comparison.threshold}, unless the file gives its own \`passed\`.`,
   )
-  if (counts.removed > 0 || counts.added > 0) {
-    // The means are over each run's own cases. Say so when the sets differ, or a reader takes
-    // a change in which cases were run for a change in how well they did.
-    lines.push(
-      `The two runs do not hold the same cases (${counts.removed} only in the baseline, ${counts.added} only in ` +
-        "the candidate), and each run's numbers include its own.",
-    )
-  }
+  const note = caseSetNote(comparison)
+  if (note) lines.push(note)
 
   section(lines, "Regressed", regressed, limit)
   section(lines, "Fixed", fixed, limit)
   return finish(lines)
-}
-
-function headline(regressions: number, baseline: RunNumbers, candidate: RunNumbers): string {
-  const before = score(baseline.meanScore)
-  const after = score(candidate.meanScore)
-  const lead = regressions === 0 ? "No case regressed" : `**${plural(regressions, "case")} regressed**`
-
-  if (baseline.meanScore === null || candidate.meanScore === null) return `${lead}.`
-  if (before === after) return `${lead}, and the mean score stayed at ${before}.`
-  const direction = candidate.meanScore > baseline.meanScore ? "rose" : "fell"
-  // "while" for the case this tool exists for: the average says better, the cases say otherwise.
-  const joint = regressions > 0 && direction === "rose" ? " while" : ", and"
-  return `${lead}${joint} the mean score ${direction} from ${before} to ${after}.`
 }
 
 function section(lines: string[], title: string, cases: CaseChange[], limit: number) {
@@ -91,7 +112,9 @@ function section(lines: string[], title: string, cases: CaseChange[], limit: num
     const tags = item.tags.map(text).join(", ")
     const before = item.baseline?.score ?? null
     const after = item.candidate?.score ?? null
-    lines.push(`| ${code(item.id)} | ${tags} | ${score(before)} | ${score(after)} | ${change(before, after, 3, "")} |`)
+    lines.push(
+      `| ${code(item.id)} | ${tags} | ${formatScore(before)} | ${formatScore(after)} | ${formatScoreChange(before, after)} |`,
+    )
   }
   if (cases.length > limit) lines.push("", `…and ${cases.length - limit} more.`)
 }
@@ -101,30 +124,9 @@ function finish(lines: string[]): string {
   return `${lines.join("\n")}\n`
 }
 
-function plural(count: number, noun: string): string {
-  return `${count} ${noun}${count === 1 ? "" : "s"}`
-}
-
-function score(value: number | null): string {
-  return value === null ? "–" : value.toFixed(3)
-}
-
-function percent(value: number | null): number | null {
-  return value === null ? null : value * 100
-}
-
 function rate(numbers: RunNumbers): string {
   if (numbers.passRate === null) return "–"
-  return `${(numbers.passRate * 100).toFixed(1)}% (${numbers.passed}/${numbers.cases})`
-}
-
-/** "+0.030", "-0.800", or "0.000" when it rounds to nothing, never "-0.000". */
-function change(before: number | null, after: number | null, digits: number, unit: string): string {
-  if (before === null || after === null) return "–"
-  const difference = after - before
-  const magnitude = Math.abs(difference).toFixed(digits)
-  if (Number(magnitude) === 0) return `${magnitude}${unit}`
-  return `${difference > 0 ? "+" : "-"}${magnitude}${unit}`
+  return `${formatPercent(numbers.passRate)} (${numbers.passed}/${numbers.cases})`
 }
 
 /** An id in a code span, safe inside a table: a pipe would end the cell, a backtick the span. */
