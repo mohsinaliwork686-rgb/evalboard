@@ -9,6 +9,8 @@ const nextConfig: NextConfig = {
   output: "export",
   basePath,
   images: { unoptimized: true },
+  // Plain links (the sample downloads) are not rewritten by Next, so they need the prefix too.
+  env: { NEXT_PUBLIC_BASE_PATH: basePath ?? "" },
 }
 
 export default nextConfig
