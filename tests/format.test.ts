@@ -1,12 +1,13 @@
 import { describe, expect, it } from "vitest"
 
 import {
-  direction,
   formatPercent,
   formatRateChange,
   formatScore,
   formatScoreChange,
   plural,
+  rateDirection,
+  scoreDirection,
 } from "@/lib/format"
 
 describe("formatting", () => {
@@ -41,10 +42,15 @@ describe("formatting", () => {
   })
 
   it("agrees with the text about which way a change went", () => {
-    expect(direction(0.71, 0.74)).toBe("up")
-    expect(direction(0.74, 0.71)).toBe("down")
-    expect(direction(0.3, 0.3 - 1e-12)).toBe("none")
-    expect(direction(null, 1)).toBe("none")
+    expect(scoreDirection(0.71, 0.74)).toBe("up")
+    expect(scoreDirection(0.74, 0.71)).toBe("down")
+    expect(scoreDirection(0.3, 0.3 - 1e-12)).toBe("none")
+    expect(scoreDirection(null, 1)).toBe("none")
+    // 0.04 points shows as "0.0 pts", so it must not be coloured as a rise either.
+    expect(rateDirection(0.5, 0.5004)).toBe("none")
+    expect(formatRateChange(0.5, 0.5004)).toBe("0.0 pts")
+    expect(rateDirection(0.5, 0.501)).toBe("up")
+    expect(rateDirection(0.5, null)).toBe("none")
   })
 
   it("pluralises", () => {

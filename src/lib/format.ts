@@ -20,15 +20,19 @@ export function formatScoreChange(before: number | null, after: number | null): 
 
 /** The change in a pass rate, in percentage points: "+4.4 pts". */
 export function formatRateChange(before: number | null, after: number | null): string {
-  return signed(before === null ? null : before * 100, after === null ? null : after * 100, 1, " pts")
+  return signed(points(before), points(after), 1, " pts")
 }
 
-/** Which way a change goes once rounded the way it is shown: a "0.000" is not an increase. */
-export function direction(before: number | null, after: number | null, digits = 3): "up" | "down" | "none" {
-  if (before === null || after === null) return "none"
-  const difference = after - before
-  if (Number(Math.abs(difference).toFixed(digits)) === 0) return "none"
-  return difference > 0 ? "up" : "down"
+export type Direction = "up" | "down" | "none"
+
+/** Which way a score moved, rounded the way it is shown: a "0.000" is not an increase. */
+export function scoreDirection(before: number | null, after: number | null): Direction {
+  return direction(before, after, 3)
+}
+
+/** Which way a pass rate moved, rounded the way it is shown: a "0.0 pts" is not an increase. */
+export function rateDirection(before: number | null, after: number | null): Direction {
+  return direction(points(before), points(after), 1)
 }
 
 export function plural(count: number, noun: string): string {
@@ -40,4 +44,15 @@ function signed(before: number | null, after: number | null, digits: number, uni
   const magnitude = Math.abs(after - before).toFixed(digits)
   const way = direction(before, after, digits)
   return `${way === "up" ? "+" : way === "down" ? "-" : ""}${magnitude}${unit}`
+}
+
+function direction(before: number | null, after: number | null, digits: number): Direction {
+  if (before === null || after === null) return "none"
+  const difference = after - before
+  if (Number(Math.abs(difference).toFixed(digits)) === 0) return "none"
+  return difference > 0 ? "up" : "down"
+}
+
+function points(rate: number | null): number | null {
+  return rate === null ? null : rate * 100
 }
