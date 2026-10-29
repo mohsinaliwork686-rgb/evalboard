@@ -1,0 +1,3 @@
+# LF everywhere, Windows included: the summary snapshots are compared byte for byte, and a
+# checkout that turned them into CRLF would fail the Windows jobs over nothing.
+* text=auto eol=lf
