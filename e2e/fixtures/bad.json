@@ -1,0 +1,1 @@
+{"schema": 1, "runs": [{"id": "r", "cases": [{"id": "a", "score": 1.4}, {"id": "b"}, {"id": "a", "score": "high"}]}]}

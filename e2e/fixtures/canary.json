@@ -1,0 +1,38 @@
+{
+  "schema": 1,
+  "tool": "canary-tool-9d41e7",
+  "runs": [
+    {
+      "id": "canary-before",
+      "cases": [
+        {
+          "id": "canary-case-5f2c8e",
+          "score": 1,
+          "tags": [
+            "canary-tag-3b7a"
+          ]
+        },
+        {
+          "id": "other",
+          "score": 0.2
+        }
+      ]
+    },
+    {
+      "id": "canary-after",
+      "cases": [
+        {
+          "id": "canary-case-5f2c8e",
+          "score": 0,
+          "tags": [
+            "canary-tag-3b7a"
+          ]
+        },
+        {
+          "id": "other",
+          "score": 0.9
+        }
+      ]
+    }
+  ]
+}

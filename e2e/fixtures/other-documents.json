@@ -1,0 +1,234 @@
+{
+  "schema": 1,
+  "tool": "ragsweep",
+  "corpus": {
+    "path": "handbook-v2",
+    "fingerprint": "0f1e2d3c4b5a6978"
+  },
+  "runs": [
+    {
+      "id": "bm25-fixed-512-64-new-handbook",
+      "cases": [
+        {
+          "id": "q01",
+          "tags": [
+            "simple"
+          ],
+          "score": 1.0
+        },
+        {
+          "id": "q02",
+          "tags": [
+            "simple"
+          ],
+          "score": 0.5
+        },
+        {
+          "id": "q03",
+          "tags": [
+            "simple"
+          ],
+          "score": 1.0
+        },
+        {
+          "id": "q04",
+          "tags": [
+            "simple"
+          ],
+          "score": 1.0
+        },
+        {
+          "id": "q05",
+          "tags": [
+            "simple"
+          ],
+          "score": 1.0
+        },
+        {
+          "id": "q06",
+          "tags": [
+            "simple"
+          ],
+          "score": 1.0
+        },
+        {
+          "id": "q07",
+          "tags": [
+            "simple"
+          ],
+          "score": 1.0
+        },
+        {
+          "id": "q08",
+          "tags": [
+            "simple"
+          ],
+          "score": 1.0
+        },
+        {
+          "id": "q09",
+          "tags": [
+            "simple"
+          ],
+          "score": 1.0
+        },
+        {
+          "id": "q10",
+          "tags": [
+            "simple"
+          ],
+          "score": 1.0
+        },
+        {
+          "id": "q11",
+          "tags": [
+            "vocabulary-mismatch"
+          ],
+          "score": 0.5
+        },
+        {
+          "id": "q12",
+          "tags": [
+            "multi-hop",
+            "vocabulary-mismatch"
+          ],
+          "score": 1.0
+        },
+        {
+          "id": "q13",
+          "tags": [
+            "vocabulary-mismatch"
+          ],
+          "score": 0.5
+        },
+        {
+          "id": "q14",
+          "tags": [
+            "vocabulary-mismatch"
+          ],
+          "score": 0.5
+        },
+        {
+          "id": "q15",
+          "tags": [
+            "negation"
+          ],
+          "score": 0.333333
+        },
+        {
+          "id": "q16",
+          "tags": [
+            "vocabulary-mismatch",
+            "negation"
+          ],
+          "score": 0.0
+        },
+        {
+          "id": "q17",
+          "tags": [
+            "distractor"
+          ],
+          "score": 1.0
+        },
+        {
+          "id": "q18",
+          "tags": [
+            "distractor"
+          ],
+          "score": 0.5
+        },
+        {
+          "id": "q19",
+          "tags": [
+            "distractor"
+          ],
+          "score": 1.0
+        },
+        {
+          "id": "q20",
+          "tags": [
+            "distractor"
+          ],
+          "score": 1.0
+        },
+        {
+          "id": "q21",
+          "tags": [
+            "distractor"
+          ],
+          "score": 0.333333
+        },
+        {
+          "id": "q22",
+          "tags": [
+            "multi-hop"
+          ],
+          "score": 1.0
+        },
+        {
+          "id": "q23",
+          "tags": [
+            "multi-hop"
+          ],
+          "score": 1.0
+        },
+        {
+          "id": "q24",
+          "tags": [
+            "multi-hop"
+          ],
+          "score": 1.0
+        },
+        {
+          "id": "q25",
+          "tags": [
+            "multi-hop"
+          ],
+          "score": 0.5
+        },
+        {
+          "id": "q26",
+          "tags": [
+            "negation"
+          ],
+          "score": 1.0
+        },
+        {
+          "id": "q27",
+          "tags": [
+            "negation"
+          ],
+          "score": 1.0
+        },
+        {
+          "id": "q28",
+          "tags": [
+            "negation"
+          ],
+          "score": 1.0
+        },
+        {
+          "id": "q29",
+          "tags": [
+            "simple"
+          ],
+          "score": 1.0
+        },
+        {
+          "id": "q30",
+          "tags": [
+            "negation"
+          ],
+          "score": 1.0
+        },
+        {
+          "id": "q31",
+          "tags": [
+            "distractor"
+          ],
+          "score": 1.0
+        }
+      ]
+    }
+  ]
+}
