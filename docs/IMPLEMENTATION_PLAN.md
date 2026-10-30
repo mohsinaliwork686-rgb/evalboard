@@ -161,10 +161,12 @@ Everything in `src/lib` is plain TypeScript with no React, tested without a brow
 
 ## 11. Definition of done
 
-- [ ] Public repo, description and topics
-- [ ] This plan, committed before the code
-- [ ] Live on GitHub Pages, working on the built-in samples
-- [ ] README with real screenshots, the format, and a link to `ragsweep` (and `ragsweep` linking back)
-- [ ] Every row of the test plan covered
-- [ ] CI green: unit tests, type check, lint, browser tests, deploy
-- [ ] At least 10 commits, one logical change each
+Shipped Friday 30 October 2026.
+
+- [x] Public repo, description and topics
+- [x] This plan, committed before the code
+- [x] Live on GitHub Pages, working on the built-in samples
+- [x] README with real screenshots, the format, and a link to `ragsweep` (and `ragsweep` linking back)
+- [x] Every row of the test plan covered
+- [x] CI green: unit tests, type check, lint, browser tests, deploy
+- [x] At least 10 commits, one logical change each
