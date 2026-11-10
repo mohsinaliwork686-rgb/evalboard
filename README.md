@@ -135,7 +135,11 @@ a body, goes to another site, or carries the marker.
 
 ## Run it
 
+Needs Node 20.9 or later (CI runs 20 and 22).
+
 ```bash
+git clone https://github.com/mohsinaliwork686-rgb/evalboard
+cd evalboard
 npm install
 npm run dev          # http://localhost:3000
 ```
@@ -145,6 +149,10 @@ npm test             # unit tests for the logic
 npm run check        # type check, lint, unit tests and the static build
 npm run e2e          # browser tests against the build, at desktop and phone sizes
 ```
+
+`npm run e2e` tests the build in `out/`, so run `npm run check` (or `npm run build`) first. It
+uses your installed Google Chrome and serves `out/` with `python3`, so both need to be on your
+machine.
 
 ## How it is built
 

@@ -11,6 +11,8 @@ const nextConfig: NextConfig = {
   images: { unoptimized: true },
   // Plain links (the sample downloads) are not rewritten by Next, so they need the prefix too.
   env: { NEXT_PUBLIC_BASE_PATH: basePath ?? "" },
+  // Stops `next dev` writing AGENTS.md and CLAUDE.md into the repo.
+  agentRules: false,
 }
 
 export default nextConfig
